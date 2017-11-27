@@ -1,0 +1,62 @@
+<div ng-show="vm.authenticated()">
+	<button type="button" ng-click="vm.show($event);">Open Modal</button>
+	<button type="button" ng-click ="vm.openhits($event);">Open Hits</button>
+	<h1>Dam Files</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>DAM file</th>
+					<th>Version</th>
+					<th>Uploaded By</th>
+					<th>Uploaded Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="damFile in vm.damFiles">
+					<td>{{damFile.damId}}</td>
+					<td>{{damFile.damName}}</td>
+					<td>{{damFile.damVersion}}</td>
+					<td>{{damFile.createdBy}}</td>
+					<td>{{damFile.createdDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<input class="form-control" type="file"  placeholder="Upload File" accept=".csv"/>
+	<!-- Modal -->
+	<div class="modal fade" tabindex="-1" ng-class="{'in': vm.visibleAnimate}"
+       ng-style="{'display': vm.visible ? 'block' : 'none', 'opacity': vm.visibleAnimate ? 1 : 0}">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" ng-click="vm.hide($event)" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="uploadfile">Upload
+								File:</label>
+							<div class="col-sm-5">
+								<input class="form-control" type="file" ng-upload-change="vm.uploadedFile($event)" placeholder="Upload File" accept=".csv"/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+          			<button type="button" class="btn btn-default" ng-click="vm.hide($event)">Close</button>
+        		</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+<div ng-hide="vm.authenticated()">
+	<p>Login to see your greeting</p>
+</div>
+<toaster-container toaster-options="{'close-button':true, 'time-out':{ 'toast-warning': 2000, 'toast-error': 0, 'toast-success': 2000 } }"></toaster-container>
+	

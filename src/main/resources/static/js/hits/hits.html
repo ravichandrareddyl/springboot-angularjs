@@ -1,0 +1,29 @@
+
+<div [hidden]="!authenticated()">
+	<h1>Hits</h1>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>DAM file</th>
+					<th>Verison</th>
+					<th>Uploaded By</th>
+					<th>Uploaded Date</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let damFile of damFiles">
+					<td>{{damFile.damId}}</td>
+					<td>{{damFile.damName}}</td>
+					<td>{{damFile.damVersion}}</td>
+					<td>{{damFile.createdBy}}</td>
+					<td>{{damFile.createdDate}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	</div>
+<div [hidden]="authenticated()">
+	<p>Login to see your greeting</p>
+</div>
